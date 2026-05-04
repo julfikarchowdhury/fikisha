@@ -207,6 +207,7 @@ Route::prefix('v10')->group(function () {
 
 
             Route::prefix('pages')->group(function(){
+                Route::get('legal-links',       'legalPageLinks');
                 Route::get('contact',           'contactUs');
                 Route::post('/contact/message/send', 'contactMessageSend');
                 Route::get('privacy-policy',    'privacyPolicy');

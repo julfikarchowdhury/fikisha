@@ -147,6 +147,27 @@ class FrontendController extends Controller
         }
     }
 
+    /**
+     * Public URLs for legal pages (SPA routes used by the web frontend).
+     */
+    public function legalPageLinks()
+    {
+        try {
+            return $this->responseWithSuccess('', [
+                'privacy_policy' => [
+                    'slug' => 'privacy_policy',
+                    'url' => url('/privacy/policy'),
+                ],
+                'terms_and_conditions' => [
+                    'slug' => 'terms_conditions',
+                    'url' => url('/terms/conditions'),
+                ],
+            ], 200);
+        } catch (\Exception $exception) {
+            return $this->responseWithError(__('levels.error_msg'), [], 500);
+        }
+    }
+
     public function aboutUs()
     {
         try {

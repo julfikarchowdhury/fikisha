@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Backend\CitySeeder;
 use Database\Seeders\Backend\FrontWeb\BlogSeeder;
 use Database\Seeders\Backend\FrontWeb\FaqSeeder;
+use Database\Seeders\Backend\FrontWeb\LegalPagesSeeder;
 use Database\Seeders\Backend\FrontWeb\PageSeeder;
 use Database\Seeders\Backend\FrontWeb\PartnerSeeder;
 use Database\Seeders\Backend\FrontWeb\SectionSeeder;
@@ -77,6 +78,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PartnerSeeder::class);
         $this->call(BlogSeeder::class);
         $this->call(PageSeeder::class);
+        $this->call(LegalPagesSeeder::class);
         $this->call(SectionSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(ProvinceSeeder::class);

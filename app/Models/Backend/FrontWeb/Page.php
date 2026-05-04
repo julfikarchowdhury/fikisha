@@ -9,6 +9,24 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     use HasFactory;
+
+    /** CMS pages that must always exist and cannot be deleted. */
+    public const SYSTEM_PAGE_SLUGS = ['privacy_policy', 'terms_conditions'];
+
+    public static function isSystemPage(?string $pageSlug): bool
+    {
+        return in_array($pageSlug, self::SYSTEM_PAGE_SLUGS, true);
+    }
+
+    protected static function booted(): void
+    {
+        static::deleting(function (Page $page) {
+            if (self::isSystemPage($page->page)) {
+                return false;
+            }
+        });
+    }
+
     public function scopeActive($query){
         return $query->where('status',Status::ACTIVE);
     }
