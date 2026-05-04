@@ -134,6 +134,11 @@ Route::get('/tracking/{tracking_token}', [TrackingController::class, 'show']);
 
 Route::prefix('v10')->group(function () {
 
+    // Legal pages: public, no API key (SPA / external consumers)
+    Route::controller(FrontendController::class)->prefix('pages')->group(function () {
+        Route::get('legal-links', 'legalPageLinks');
+    });
+
     Route::middleware(['CheckApiKey'])->group(function () {
 
         // all apis goes here
@@ -161,7 +166,7 @@ Route::prefix('v10')->group(function () {
             Route::post('/update-password',                              [AuthController::class, 'updatePassword']);
             Route::post('/sign-out',                                    [AuthController::class, 'logout']);
             //deliveryman
-            Route::prefix('deliveryman')->group(function(){
+            Route::prefix('deliveryman')->group(function () {
                 Route::get('/dashboard',                         [DeliverymanController::class, 'dashboard']);
                 Route::get('/profile',                           [DeliverymanController::class, 'profile']);
                 Route::post('/profile/update',                   [DeliverymanController::class, 'profileUpdate']);
@@ -181,10 +186,7 @@ Route::prefix('v10')->group(function () {
                 Route::get('/order/status/show',                 [DeliverymanOrderController::class, 'orderStatus']);
                 Route::get('/order/status/update',               [DeliverymanOrderController::class, 'parcelStatusUpdate']);
                 Route::get('/order/details/{id}',                [DeliverymanOrderController::class, 'details']);
-
             });
-
-
         });
 
         // Website Api
@@ -206,12 +208,11 @@ Route::prefix('v10')->group(function () {
             Route::post('/our_network', 'ourNetwork');
 
 
-            Route::prefix('pages')->group(function(){
-                Route::get('legal-links',       'legalPageLinks');
+            Route::prefix('pages')->group(function () {
                 Route::get('contact',           'contactUs');
                 Route::post('/contact/message/send', 'contactMessageSend');
-                Route::get('privacy-policy',    'privacyPolicy');
-                Route::get('terms-conditions',  'termsConditions');
+                Route::get('privacy-policy', 'privacyPolicy');
+                Route::get('terms-conditions', 'termsConditions');
                 Route::get('aboutus',           'aboutUs');
                 Route::get('faq',               'getFaq');
                 Route::get('network-coverage',  'networkCoverage');
@@ -227,9 +228,7 @@ Route::prefix('v10')->group(function () {
             Route::get('social-links',           'socialLinks');
             Route::get('get/sliders',            'sliders');
             Route::get('default/data',           'defaultData');
-
         });
-
     });
 
     //frontend api
