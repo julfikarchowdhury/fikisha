@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
- Route::middleware(['XSS', 'IsInstalled'])->group(function () {
+Route::middleware(['XSS'])->group(function () {
     Route::get('/', function () {
         return view('vue-app');
     })->where('any', '.*');

@@ -73,8 +73,6 @@ class Kernel extends HttpKernel
         'XSS'               => \App\Http\Middleware\XSS::class,
         'CheckApiKey'       => CheckApiKeyMiddleware::class,
         'headersCheck'      => \App\Http\Middleware\ModifyHeaderMiddleware::class,
-        'IsInstalled'       => \App\Http\Middleware\IsInstalledMiddleware::class,
-        'IsNotInstalled'    => \App\Http\Middleware\IsNotInstalledMiddleware::class,
         'merchantIsValid'    => \App\Http\Middleware\MerchantIsValid::class,
         'businessAccount'    => \App\Http\Middleware\BusinessAccountMiddleware::class,
         'AuthMerchant' => \App\Http\Middleware\AuthMerchantMiddleware::class,

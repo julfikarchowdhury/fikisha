@@ -1,14 +1,4 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Laravel WeDelivery App
-|--------------------------------------------------------------------------
-|
-| Autor Name : WemaxDevs
-| Website : www.wemaxdevs.com
-| Email : info@wemaxdevs.com
-|
-*/
 
 use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -130,23 +120,11 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Backend\WebNotificationController;
 use App\Http\Controllers\Backend\ZoneController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\InstallerController;
 use App\Http\Controllers\TrackingPageController;
 use App\Http\Services\PushNotificationService;
 use Illuminate\Support\Facades\Auth;
 
-//installer
-Route::middleware(['XSS', 'IsNotInstalled'])->group(function () {
-    Route::get('install',                     [InstallerController::class, 'index']);
-});
-
 Route::middleware(['XSS'])->group(function () {
-    Route::post('installing',                      [InstallerController::class, 'installing'])->name('installing');
-    Route::get('finish',                           [InstallerController::class, 'finish'])->name('final');
-});
-
-//end installer
-Route::middleware(['XSS', 'IsInstalled'])->group(function () {
     Auth::routes();
 
 
