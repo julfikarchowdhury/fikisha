@@ -1,0 +1,35 @@
+:root {
+    --font-family: "Outfit", sans-serif;
+    --white-color: #ffffff;
+    --gray-white-color: #fafafa;
+    --text-color: #242146;
+    --bg-dark: #242146;
+    --bs-dark: #000000;
+    --bs-subtitle: #4a4949;
+    --h-color: #242146;
+    --bs-body-font-size: 1rem;
+    --bs-primary: #e97728 !important;
+    --bs-primary-rgb: 233, 119, 40 !important;
+    /* --bs-primary: #ff204e !important; */
+    /* --bs-primary-rgb: 255, 32, 78 !important; */
+    --bs-deep-primary: #ce702d;
+    /* --bs-deep-primary: #e5224a; */
+    --box-shadow-lg: 0 0.25rem 1.75rem rgba(30, 34, 40, 0.07);
+    --btn-shadow: 0 0.25rem 0.75rem rgb(30 34 40 / 15%);
+    --translate-y: translateY(-0.15rem);
+    --bs-info: #7d46dd;
+    --bs-danger: #e2626b;
+    --section-bg: #7e00950d;
+    --h-font-family: var(--font-family);
+    --bs-success: #198754;
+    --bs-dark: #111120;
+
+    --bs-outline-primary: var(--bs-primary);
+    --bs-outline-info: #7d46dd25;
+    --bs-outline-danger: #e2626b1c;
+    --bs-outline-success: #1987542f;
+    --price-card-shadow: 0 0 0 0.05rem rgb(8 60 130 / 6%),
+        0 0 1.25rem rgb(30 34 40 / 4%);
+    --font-size-8rem: 0.8rem;
+    --font-size-1rem: 1.2rem;
+}

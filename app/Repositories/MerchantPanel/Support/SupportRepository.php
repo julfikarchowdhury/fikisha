@@ -1,0 +1,139 @@
+<?php
+
+namespace App\Repositories\MerchantPanel\Support;
+
+use App\Models\Backend\Support;
+use App\Models\Backend\Upload;
+use App\Models\User;
+use App\Models\Backend\Department;
+use App\Repositories\MerchantPanel\Support\SupportInterface;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use App\Models\Backend\SupportChat;
+
+class SupportRepository implements SupportInterface
+{
+    // get all rows in Department model
+    public function departments()
+    {
+        return Department::active()->orderBy('title')->get();
+    }
+    public function all()
+    {
+        return Support::orderByDesc('id')->where('user_id', Auth::user()->id)->paginate(10);
+    }
+    public function get($id)
+    {
+        return Support::find($id);
+    }
+    public function chats($id)
+    {
+        return  SupportChat::orderByDesc('id')->where('support_id', $id)->get();
+    }
+
+    public function store($request)
+    {
+        try {
+
+            $support                    = new Support();
+            $support->user_id           = Auth::User()->id;
+            $support->department_id     = $request->department_id;
+            $support->service           = $request->service;
+            $support->priority          = $request->priority;
+            $support->subject           = $request->subject;
+            $support->description       = $request->description;
+            $support->date              = $request->date;
+
+            if ($request->hasFile('attached_file')) {
+                $uploadedId = $this->file($request->attached_file, '');
+                if ($uploadedId) {
+                    $support->attached_file = $uploadedId;
+                }
+            }
+
+            $support->save();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+    public function update($id, $request)
+    {
+        try {
+            $support                    =  Support::find($id);
+            $support->user_id           = Auth::User()->id;
+            $support->department_id     = $request->department_id;
+            $support->service           = $request->service;
+            $support->priority          = $request->priority;
+            $support->subject           = $request->subject;
+            $support->description       = $request->description;
+            $support->date              = $request->date;
+            if ($request->hasFile('attached_file')) {
+                $uploadedId = $this->file($request->attached_file, $support->attached_file);
+                if ($uploadedId) {
+                    $support->attached_file = $uploadedId;
+                }
+            }
+
+            $support->save();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+    public function delete($id)
+    {
+        return Support::destroy($id);
+    }
+    public function file($image, $image_id = '')
+    {
+        try {
+
+            $image_name = '';
+            if (!blank($image)) {
+                $destinationPath = public_path('uploads/support');
+                if (!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0755, true);
+                }
+                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $image_name = 'uploads/support/' . $profileImage;
+            }
+
+            if (blank($image_id)) {
+                $upload           = new Upload();
+            } else {
+                $upload           = Upload::find($image_id);
+                if (file_exists($upload->original)) {
+                    unlink($upload->original);
+                }
+            }
+
+            $upload->original     = $image_name;
+            $upload->save();
+            return $upload->id;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function reply($request)
+    {
+        try {
+            $reply              = new SupportChat();
+            $reply->support_id  = $request->support_id;
+            $reply->user_id     = Auth::user()->id;
+            $reply->message     = $request->message;
+            if ($request->hasFile('attached_file')) {
+                $uploadedId = $this->file($request->attached_file, '');
+                if ($uploadedId) {
+                    $reply->attached_file = $uploadedId;
+                }
+            }
+            $reply->save();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+}

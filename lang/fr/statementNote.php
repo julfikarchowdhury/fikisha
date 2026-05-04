@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'received_warehouse_deliveryman_statement'            => 'Commande reçue de l’entrepôt - Revenu livreur',
+    'received_warehouse_deliveryman_statement_cancel'     => 'Annulation commande reçue de l’entrepôt - Dépense livreur',
+    'received_warehouse_courier_statement'                => 'Commande reçue de l’entrepôt - Dépense société',
+    'received_warehouse_courier_statement_cancel'         => 'Annulation commande reçue de l’entrepôt - Revenu société',
+    'delivered_deliveryman_statement'                    => 'Commande livrée - Revenu livreur',
+    'delivered_deliveryman_statement_cancel'             => 'Annulation commande livrée - Revenu livreur',
+    'delivered_courier_statement'                        => 'Commande livrée - Dépense société',
+    'delivered_courier_statement_cancel'                 => 'Annulation commande livrée - Dépense société',
+    'delivered_merchant_statment'                        => 'Commande livrée - Revenu expéditeur',
+    'delivered_merchant_statment_cancel'                 => 'Annulation commande livrée - Revenu expéditeur',
+    'delivered_merchant_courier_statement'               => 'Commande livrée - Dépense expéditeur société',
+    'delivered_merchant_courier_statement_cancel'        => 'Annulation commande livrée - Dépense expéditeur société',
+    'partial_delivered_deliveryman_statement'            => 'Commande partiellement livrée - Revenu livreur',
+    'partial_delivered_deliveryman_statement_cancel'     => 'Annulation commande partiellement livrée - Revenu livreur',
+    'partial_delivered_courier_statement'                => 'Commande partiellement livrée - Dépense société',
+    'partial_delivered_courier_statement_cancel'         => 'Annulation commande partiellement livrée - Dépense société',
+    'partial_delivered_merchant_statment'                => 'Commande partiellement livrée - Revenu expéditeur',
+    'partial_delivered_merchant_statment_cancel'         => 'Annulation commande partiellement livrée - Revenu expéditeur',
+    'partial_delivered_merchant_courier_statement'       => 'Commande partiellement livrée - Dépense expéditeur société',
+    'partial_delivered_merchant_courier_statement_cancel'=> 'Annulation commande partiellement livrée - Dépense expéditeur société',
+    'returned_to_merchant_income'                        => 'Commande retournée - Revenu expéditeur',
+    'returned_to_merchant_expense'                       => 'Commande retournée - Dépense expéditeur',
+    'returned_to_merchant_income_cancel'                 => 'Commande retournée annulée - Revenu expéditeur',
+    'returned_to_merchant_expense_cancel'                => 'Commande retournée annulée - Dépense expéditeur',
+];

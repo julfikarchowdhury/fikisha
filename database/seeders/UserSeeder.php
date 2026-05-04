@@ -1,0 +1,596 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Enums\UserType;
+use App\Models\RoleUser;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $user                        = new User();
+        $user->name                  = "wemaxdevs";
+        $user->email                 = "admin@fikisha.com";
+        $user->password              = Hash::make('12345678');
+        $user->mobile                = "01912938002";
+        $user->nid_number            = "12345678912";
+        $user->user_type             = UserType::ADMIN;
+        $user->image_id              = 1;
+        $user->joining_date          = "2022-01-01";
+        $user->salary                =  7000;
+        $user->address               = "Mirpur-10, Dhaka-1216";
+        $user->role_id               = 1;
+        $user->permissions           = $this->supperAdminPermissions();
+        $user->save();
+        
+    }
+
+    private function supperAdminPermissions()
+    {
+        return [
+            'dashboard_read',
+            'calendar_read',
+            'total_parcel',
+            'total_user',
+            'total_merchant',
+            'total_delivery_man',
+            'total_hubs',
+            'total_accounts',
+            'total_parcels_pending',
+            'total_pickup_assigned',
+            'total_received_warehouse',
+            'total_deliveryman_assigned',
+            'total_partial_deliverd',
+            'total_parcels_deliverd',
+
+            'recent_accounts',
+            'recent_salary',
+            'recent_hub',
+            'all_statements',
+            'income_expense_charts',
+            'merchant_revenue_charts',
+            'deliveryman_revenue_charts',
+            'courier_revenue_charts',
+            'recent_parcels',
+            'bank_transaction',
+
+            'log_read',
+            'dispute_read',
+            'dispute_update',
+            'platform_ledger_read',
+            'database_backup_read',
+
+            'hub_read',
+            'hub_create',
+            'hub_update',
+            'hub_delete',
+            'hub_incharge_read',
+            'hub_incharge_create',
+            'hub_incharge_update',
+            'hub_incharge_delete',
+            'hub_incharge_assigned',
+
+            'account_read',
+            'account_create',
+            'account_update',
+            'account_delete',
+
+            'income_read',
+            'income_create',
+            'income_update',
+            'income_delete',
+
+            'expense_read',
+            'expense_create',
+            'expense_update',
+            'expense_delete',
+
+            'todo_read',
+            'todo_create',
+            'todo_update',
+            'todo_delete',
+
+            'account_heads_read',
+
+            'salary_read',
+            'salary_create',
+            'salary_update',
+            'salary_delete',
+
+            'support_read',
+            'support_create',
+            'support_update',
+            'support_delete',
+            'support_reply',
+            'support_status_update',
+
+            'fund_transfer_read',
+            'fund_transfer_create',
+            'fund_transfer_update',
+            'fund_transfer_delete',
+
+            'role_read',
+            'role_create',
+            'role_update',
+            'role_delete',
+
+            'designation_read',
+            'designation_create',
+            'designation_update',
+            'designation_delete',
+
+            'department_read',
+            'department_create',
+            'department_update',
+            'department_delete',
+
+            'user_read',
+            'user_create',
+            'user_update',
+            'user_delete',
+            'permission_update',
+
+            'customer_read',
+            'customer_create',
+            'customer_update',
+            'customer_delete',
+            'customer_view',
+
+            'merchant_delivery_charge_read',
+            'merchant_delivery_charge_create',
+            'merchant_delivery_charge_update',
+            'merchant_delivery_charge_delete',
+
+            'merchant_shop_read',
+            'merchant_shop_create',
+            'merchant_shop_update',
+            'merchant_shop_delete',
+
+            'merchant_payment_read',
+            'merchant_payment_create',
+            'merchant_payment_update',
+            'merchant_payment_delete',
+
+            'payment_read',
+            'payment_create',
+            'payment_update',
+            'payment_delete',
+            'payment_reject',
+            'payment_process',
+
+            'hub_payment_read',
+            'hub_payment_create',
+            'hub_payment_update',
+            'hub_payment_delete',
+            'hub_payment_reject',
+            'hub_payment_process',
+
+            'hub_payment_request_read',
+            'hub_payment_request_create',
+            'hub_payment_request_update',
+            'hub_payment_request_delete',
+
+            'parcel_read',
+            'parcel_create',
+            'parcel_update',
+            'parcel_delete',
+
+            'return_report_read',
+
+            'delivery_man_read',
+            'delivery_man_create',
+            'delivery_man_update',
+            'delivery_man_delete',
+
+            'shipping_type_read',
+            'shipping_type_create',
+            'shipping_type_update',
+            'shipping_type_delete',
+
+            'delivery_charge_read',
+            'delivery_charge_create',
+            'delivery_charge_update',
+            'delivery_charge_delete',
+
+            'delivery_type_read',
+            'delivery_type_create',
+            'delivery_type_update',
+            'delivery_type_delete',
+            'delivery_type_status_change',
+
+            'liquid_fragile_read',
+            'liquid_fragile_update',
+            'liquid_status_change',
+
+            'extra_cost_read',
+            'extra_cost_update',
+            'extra_cost_status_change',
+
+            'sms_settings_read',
+            'sms_settings_create',
+            'sms_settings_update',
+            'sms_settings_delete',
+            'sms_settings_status_change',
+
+            'sms_send_settings_read',
+            'sms_send_settings_create',
+            'sms_send_settings_update',
+            'sms_send_settings_delete',
+            'sms_send_settings_status_change',
+
+            'general_settings_read',
+            'general_settings_update',
+
+            'notification_settings_read',
+            'notification_settings_update',
+
+            'push_notification_read',
+            'push_notification_create',
+            'push_notification_update',
+            'push_notification_delete',
+
+            'packaging_read',
+            'packaging_create',
+            'packaging_update',
+            'packaging_delete',
+            'parcel_status_update',
+
+            'category_read',
+            'category_create',
+            'category_update',
+            'category_delete',
+
+            'asset_category_read',
+            'asset_category_create',
+            'asset_category_update',
+            'asset_category_delete',
+
+            'parcel_category_read',
+            'parcel_category_create',
+            'parcel_category_update',
+            'parcel_category_delete',
+
+            'read'   => 'batch_category_read',
+            'create' => 'batch_category_create',
+            'update' => 'batch_category_update',
+            'delete' => 'batch_category_delete',
+
+            'package_read',
+            'package_create',
+            'package_update',
+            'package_delete',
+            'package_status_update',
+            'package_scan_status_update',
+
+            'load_read',
+            'load_create',
+            'load_update',
+            'load_delete',
+            'load_status_update',
+            'load_scan_status_update',
+
+            'news_offer_read',
+            'news_offer_create',
+            'news_offer_update',
+            'news_offer_delete',
+
+            'bank_transaction_read',
+
+            'parcel_status_reports',
+            'parcel_total_summery',
+            'salary_reports',
+            'merchant_hub_deliveryman',
+
+            'salary_generate_read',
+            'salary_generate_create',
+            'salary_generate_update',
+            'salary_generate_delete',
+
+            'assets_read',
+            'assets_create',
+            'assets_update',
+            'assets_delete',
+
+            'vehicle_read',
+            'vehicle_create',
+            'vehicle_update',
+            'vehicle_delete',
+
+            'fraud_read',
+            'fraud_create',
+            'fraud_update',
+            'fraud_delete',
+            'subscribe_read',
+            'pickup_request_regular',
+            'pickup_request_express',
+            'invoice_read',
+            'invoice_status_update',
+            'social_login_settings_read',
+            'social_login_settings_update',
+            'payout_setup_settings_read',
+            'payout_setup_settings_update',
+            'online_payment_read',
+            'payout_read',
+            'payout_create',
+            'hub_view',
+            'paid_invoice_read',
+            'invoice_generate_menually',
+            'currency_read',
+            'currency_create',
+            'currency_update',
+            'currency_delete',
+
+            'country_read',
+            'country_create',
+            'country_update',
+            'country_delete',
+
+            'city_read',
+            'city_create',
+            'city_update',
+            'city_delete',
+            
+            'province_read',
+            'province_create',
+            'province_update',
+            'province_delete',
+
+            'district_read',
+            'district_create',
+            'district_update',
+            'district_delete',
+
+            'town_read',
+            'town_create',
+            'town_update',
+            'town_delete',
+
+            //front web
+            'social_link_read',
+            'social_link_create',
+            'social_link_update',
+            'social_link_delete',
+            //service
+            'service_read',
+            'service_create',
+            'service_update',
+            'service_delete',
+            //Why Courier
+            'why_courier_read',
+            'why_courier_create',
+            'why_courier_update',
+            'why_courier_delete',
+
+            'slider_read',
+            'slider_create',
+            'slider_update',
+            'slider_delete',
+
+            //faq
+            'faq_read',
+            'faq_create',
+            'faq_update',
+            'faq_delete',
+            //partner
+            'partner_read',
+            'partner_create',
+            'partner_update',
+            'partner_delete',
+            //blogs
+            'blogs_read',
+            'blogs_create',
+            'blogs_update',
+            'blogs_delete',
+            //pages
+            'pages_read',
+            'pages_update',
+            //section
+            'section_read',
+            'section_update',
+
+            //wallet request
+            'wallet_request_read',
+            'wallet_request_create',
+            'wallet_request_delete',
+
+            'leave_type_read',
+            'leave_type_create',
+            'leave_type_update',
+            'leave_type_delete',
+
+            //leave assign
+            'leave_assign_read',
+            'leave_assign_create',
+            'leave_assign_update',
+            'leave_assign_delete',
+
+            'leave_read',
+            'leave_create',
+            'leave_delete',
+            'leave_approval',
+            'leave_reports',
+
+            'duty_schedule_read',
+            'duty_schedule_create',
+            'duty_schedule_update',
+            'duty_schedule_delete',
+
+            'weekend_read',
+            'weekend_update',
+
+            //attendance
+            'attendance_read',
+            'attendance_create',
+            'attendance_update',
+            'attendance_delete',
+            'attendance_reports',
+
+            //holiday
+            'holiday_read',
+            'holiday_create',
+            'holiday_update',
+            'holiday_delete',
+            'statistics_read',
+
+            'messanger_settings_manage',
+            'analytics_read',
+            'receiver_read'
+        ];
+    }
+
+
+    private function adminPermissions()
+    {
+        return [
+            'dashboard_read',
+            'calendar_read',
+            'total_parcel',
+            'total_user',
+            'total_merchant',
+            'total_delivery_man',
+            'total_hubs',
+            'total_accounts',
+            'total_parcels_pending',
+            'total_pickup_assigned',
+            'total_received_warehouse',
+            'total_deliveryman_assigned',
+            'total_partial_deliverd',
+            'total_parcels_deliverd',
+
+            'recent_accounts',
+            'recent_salary',
+            'recent_hub',
+            'all_statements',
+            'income_expense_charts',
+            'merchant_revenue_charts',
+            'deliveryman_revenue_charts',
+            'courier_revenue_charts',
+            'recent_parcels',
+            'bank_transaction',
+
+            'recent_accounts',
+            'recent_salary',
+            'recent_hub',
+            'all_statements',
+            'income_expense_charts',
+            'merchant_revenue_charts',
+            'deliveryman_revenue_charts',
+            'courier_revenue_charts',
+            'recent_parcels',
+            'bank_transaction',
+
+            'log_read',
+            'dispute_read',
+            'dispute_update',
+            'platform_ledger_read',
+            'database_backup_read',
+
+            'hub_read',
+            'hub_incharge_read',
+
+            'account_read',
+
+            'expense_read',
+
+            'todo_read',
+
+            'account_heads_read',
+
+            'fund_transfer_read',
+
+            'role_read',
+            'salary_read',
+            'support_read',
+            'general_settings_read',
+
+            'designation_read',
+
+            'department_read',
+
+            'user_read',
+
+            'customer_read',
+
+            'merchant_delivery_charge_read',
+
+            'merchant_shop_read',
+
+            'merchant_payment_read',
+
+            'payment_read',
+            'hub_payment_request_read',
+
+            'hub_payment_read',
+
+            'parcel_read',
+
+            'delivery_man_read',
+
+            'delivery_category_read',
+
+            'delivery_charge_read',
+
+            'delivery_type_read',
+
+            'liquid_fragile_read',
+
+            'sms_settings_read',
+            'sms_send_settings_read',
+
+            'notification_settings_read',
+
+            'push_notification_read',
+            'push_notification_create',
+            'push_notification_update',
+            'push_notification_delete',
+
+            'packaging_read',
+
+            'category_read',
+
+            'asset_category_read',
+
+            'news_offer_read',
+
+            'cash_received_from_delivery_man_read',
+            'cash_received_from_delivery_man_create',
+            'cash_received_from_delivery_man_update',
+            'cash_received_from_delivery_man_delete',
+
+            'parcel_status_reports',
+            'parcel_total_summery',
+            'salary_reports',
+            'merchant_hub_deliveryman',
+
+            'salary_generate_read',
+
+            'assets_read',
+
+            'fraud_read',
+            'subscribe_read',
+            'pickup_request_regular',
+            'pickup_request_express',
+            'invoice_read',
+            'invoice_status_update',
+            'social_login_settings_read',
+            'social_login_settings_update',
+            'payout_setup_settings_read',
+            'online_payment_read',
+            'payout_read',
+            'hub_view',
+            'paid_invoice_read',
+            'invoice_generate_menually',
+        ];
+    }
+}
+

@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models\Backend;
+
+use App\Models\Backend\Parcel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class MerchantStatement extends Model
+{
+    use HasFactory;
+    public function parcel()
+    {
+        return $this->belongsTo(Parcel::class, 'parcel_id', 'id');
+    }
+}
