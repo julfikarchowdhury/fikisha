@@ -9,8 +9,7 @@ class PushNotificationService
 {
     public function fcmAccessToken()
     {
-        // Load the Firebase JSON credentials
-        $pathToServiceAccount = config_path('FirebasePrivateKey.json');
+        $pathToServiceAccount = $this->firebaseCredentialsPath();
         // Create a new Google client
         $client = new GoogleClient();
         $client->setAuthConfig($pathToServiceAccount);
@@ -412,5 +411,29 @@ class PushNotificationService
         } else {
             return true;
         }
+    }
+
+    /**
+     * Path to the Firebase service account JSON. Set FIREBASE_CREDENTIALS in .env
+     * (path relative to project root, or an absolute path). Default: config/FirebasePrivateKey.json (gitignored).
+     */
+    private function firebaseCredentialsPath(): string
+    {
+        $path = env('FIREBASE_CREDENTIALS', 'config/FirebasePrivateKey.json');
+
+        if ($this->isAbsolutePath($path)) {
+            return $path;
+        }
+
+        return base_path(str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $path));
+    }
+
+    private function isAbsolutePath(string $path): bool
+    {
+        if (str_starts_with($path, '/') || str_starts_with($path, '\\')) {
+            return true;
+        }
+
+        return strlen($path) > 2 && ctype_alpha($path[0]) && $path[1] === ':';
     }
 }

@@ -43,6 +43,7 @@ return [
     ],
     'stripe' => [
         'secret' => env('STRIPE_SECRET'),
+        'publishable' => env('STRIPE_PUBLISHABLE_KEY'),
     ],
     'paytm-wallet' => [
         'env' => env('PAYTM_ENVIRONMENT','local'), // values : (local | production)

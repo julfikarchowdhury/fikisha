@@ -7,7 +7,20 @@
 /vendor
 /.env
 .env
+.env.*.local
 .env.backup
+# Firebase / Google service account (keep locally; copy from FirebasePrivateKey.json.example)
+/config/FirebasePrivateKey.json
+/storage/app/firebase-*-credentials.json
+# Other local secrets (never commit)
+.env.local
+.env.production
+.env.staging
+auth.json
+google-services.json
+GoogleService-Info.plist
+/storage/*.pem
+/storage/oauth-*.key
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
